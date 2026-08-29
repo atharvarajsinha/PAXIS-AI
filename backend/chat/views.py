@@ -1,5 +1,8 @@
 import json
+import logging
+import time
 
+from django.db import DatabaseError
 from django.db.models import Count
 from django.http import StreamingHttpResponse
 from django.shortcuts import get_object_or_404
@@ -15,13 +18,20 @@ from .serializers import (
     ConversationListSerializer,
     ConversationRenameSerializer,
 )
-from .services import generate_learning_response
+from .services import AI_UNAVAILABLE_MESSAGE, generate_learning_response
+
+
+logger = logging.getLogger(__name__)
 
 
 def _profile_context(user):
     """The learner's profiling record rendered for the system prompt."""
     profile = getattr(user, 'learner_profile', None)
     return profile.as_prompt_context() if profile else ''
+
+
+def _sse(payload):
+    return f'data: {json.dumps(payload)}\n\n'
 
 
 class ChatAPIView(APIView):
@@ -49,33 +59,25 @@ class ChatAPIView(APIView):
         else:
             conversation.save(update_fields=['updated_at'])
 
-        try:
-            generator = generate_learning_response(
-                user_message,
-                previous_messages,
-                profile_context=_profile_context(request.user),
-            )
-        except Exception:
-            return Response({'error': 'AI service is temporarily unavailable.'}, status=502)
+        generator = generate_learning_response(
+            user_message,
+            previous_messages,
+            profile_context=_profile_context(request.user),
+        )
 
         def stream_response():
+            started = time.monotonic()
             final_response = None
             final_roadmap = None
+            persisted = False
 
-            # The client needs the id on the very first chunk so follow-up
-            # messages land in this same thread instead of starting a new one.
-            yield f'data: {json.dumps({"conversation_id": conversation.id})}\n\n'
-
-            try:
-                for chunk in generator:
-                    if 'response' in chunk:
-                        final_response = chunk['response']
-                    if 'roadmap' in chunk:
-                        final_roadmap = chunk['roadmap']
-
-                    yield f'data: {json.dumps(chunk)}\n\n'
-
-                if final_response:
+            def persist():
+                """Write the assistant turn once, and only when there is one."""
+                nonlocal persisted
+                if persisted or not final_response:
+                    return
+                persisted = True
+                try:
                     ChatMessage.objects.create(
                         conversation=conversation,
                         role='assistant',
@@ -83,10 +85,38 @@ class ChatAPIView(APIView):
                         roadmap=final_roadmap,
                     )
                     conversation.save(update_fields=['updated_at'])
-            except Exception as exc:
-                yield f'data: {json.dumps({"error": str(exc)})}\n\n'
+                except DatabaseError:
+                    logger.exception('[chat] conversation=%s outcome=persist-failed', conversation.id)
 
-            yield 'event: end\ndata: {}\n\n'
+            logger.info('[chat] conversation=%s outcome=started', conversation.id)
+
+            yield _sse({'conversation_id': conversation.id})
+
+            try:
+                try:
+                    for chunk in generator:
+                        if 'response' in chunk:
+                            final_response = chunk['response']
+                        if 'roadmap' in chunk:
+                            final_roadmap = chunk['roadmap']
+                        yield _sse(chunk)
+                except Exception:
+                    logger.exception('[chat] conversation=%s outcome=failed', conversation.id)
+                    yield _sse({'error': AI_UNAVAILABLE_MESSAGE})
+                else:
+                    persist()
+                    logger.info(
+                        '[chat] conversation=%s outcome=completed has_roadmap=%s duration=%.2fs',
+                        conversation.id, bool(final_roadmap), time.monotonic() - started,
+                    )
+                yield 'event: end\ndata: {}\n\n'
+            finally:
+                closer = getattr(generator, 'close', None)
+                if callable(closer):
+                    closer()
+                if not persisted and final_response:
+                    logger.info('[chat] conversation=%s outcome=client-disconnected', conversation.id)
+                    persist()
 
         response = StreamingHttpResponse(stream_response(), content_type='text/event-stream')
         response['X-Accel-Buffering'] = 'no'
@@ -102,9 +132,8 @@ class ConversationListAPIView(APIView):
             Conversation.objects.filter(user=request.user)
             .annotate(message_count=Count('messages'))
             .prefetch_related('messages')
-            .order_by("-updated_at")
+            .order_by('-updated_at')
         )
-        print(ConversationListSerializer(conversations, many=True).data)
         return Response(ConversationListSerializer(conversations, many=True).data)
 
 
