@@ -30,6 +30,7 @@ class LearnerProfile(models.Model):
     weekly_hours = models.PositiveIntegerField(default=5)
     # Each of these is a plain list of strings, kept as JSON so the profiling
     # engine can grow new fields without another migration per field.
+    # Stores the learner's interests, goals, experience, and completed courses.
     interests = models.JSONField(default=list, blank=True)
     objectives = models.JSONField(default=list, blank=True)
     completed_courses = models.JSONField(default=list, blank=True)
