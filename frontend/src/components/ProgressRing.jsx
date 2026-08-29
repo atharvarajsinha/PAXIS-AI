@@ -3,6 +3,7 @@ const STROKE = 12;
 const RADIUS = (SIZE - STROKE) / 2;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
+// Displays the learner's overall progress as a circular progress indicator.
 export default function ProgressRing({ value = 0, label = 'complete' }) {
   const clamped = Math.max(0, Math.min(100, Number(value) || 0));
 

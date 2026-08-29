@@ -21,6 +21,7 @@ function ResourceLink({ material }) {
 }
 
 /** Expanded view of one plan: tick stages off and see milestones move. */
+// Tracks completed learning steps, milestones, resources, and next actions.
 export default function PlanTracker({ plan, busyIds, onToggle }) {
   const byTopic = (step) => step.study_material?.by_topic || {};
 
