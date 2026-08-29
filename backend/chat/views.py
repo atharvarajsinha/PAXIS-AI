@@ -33,7 +33,7 @@ def _profile_context(user):
 def _sse(payload):
     return f'data: {json.dumps(payload)}\n\n'
 
-
+# Handles learner messages and streams the AI response back to the frontend.
 class ChatAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
