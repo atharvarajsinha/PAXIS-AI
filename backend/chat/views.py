@@ -1,0 +1,132 @@
+import json
+
+from django.db.models import Count
+from django.http import StreamingHttpResponse
+from django.shortcuts import get_object_or_404
+from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .models import ChatMessage, Conversation
+from .serializers import (
+    ChatRequestSerializer,
+    ConversationDetailSerializer,
+    ConversationListSerializer,
+    ConversationRenameSerializer,
+)
+from .services import generate_learning_response
+
+
+def _profile_context(user):
+    """The learner's profiling record rendered for the system prompt."""
+    profile = getattr(user, 'learner_profile', None)
+    return profile.as_prompt_context() if profile else ''
+
+
+class ChatAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = ChatRequestSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user_message = serializer.validated_data['message']
+        conversation_id = serializer.validated_data.get('conversation_id')
+
+        if conversation_id is None:
+            conversation = Conversation.objects.create(user=request.user, title=user_message[:60])
+        else:
+            try:
+                conversation = Conversation.objects.get(id=conversation_id, user=request.user)
+            except Conversation.DoesNotExist:
+                return Response({'error': 'Conversation not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+        previous_messages = list(conversation.messages.order_by('created_at', 'id'))
+        ChatMessage.objects.create(conversation=conversation, role='user', message=user_message)
+        if not conversation.title:
+            conversation.title = user_message[:60]
+            conversation.save(update_fields=['title', 'updated_at'])
+        else:
+            conversation.save(update_fields=['updated_at'])
+
+        try:
+            generator = generate_learning_response(
+                user_message,
+                previous_messages,
+                profile_context=_profile_context(request.user),
+            )
+        except Exception:
+            return Response({'error': 'AI service is temporarily unavailable.'}, status=502)
+
+        def stream_response():
+            final_response = None
+            final_roadmap = None
+
+            # The client needs the id on the very first chunk so follow-up
+            # messages land in this same thread instead of starting a new one.
+            yield f'data: {json.dumps({"conversation_id": conversation.id})}\n\n'
+
+            try:
+                for chunk in generator:
+                    if 'response' in chunk:
+                        final_response = chunk['response']
+                    if 'roadmap' in chunk:
+                        final_roadmap = chunk['roadmap']
+
+                    yield f'data: {json.dumps(chunk)}\n\n'
+
+                if final_response:
+                    ChatMessage.objects.create(
+                        conversation=conversation,
+                        role='assistant',
+                        message=final_response,
+                        roadmap=final_roadmap,
+                    )
+                    conversation.save(update_fields=['updated_at'])
+            except Exception as exc:
+                yield f'data: {json.dumps({"error": str(exc)})}\n\n'
+
+            yield 'event: end\ndata: {}\n\n'
+
+        response = StreamingHttpResponse(stream_response(), content_type='text/event-stream')
+        response['X-Accel-Buffering'] = 'no'
+        response['Cache-Control'] = 'no-cache'
+        return response
+
+
+class ConversationListAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        conversations = (
+            Conversation.objects.filter(user=request.user)
+            .annotate(message_count=Count('messages'))
+            .prefetch_related('messages')
+            .order_by("-updated_at")
+        )
+        print(ConversationListSerializer(conversations, many=True).data)
+        return Response(ConversationListSerializer(conversations, many=True).data)
+
+
+class ConversationDetailAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self, request, conversation_id):
+        return get_object_or_404(Conversation, id=conversation_id, user=request.user)
+
+    def get(self, request, conversation_id):
+        conversation = self.get_object(request, conversation_id)
+        return Response(ConversationDetailSerializer(conversation).data)
+
+    def patch(self, request, conversation_id):
+        conversation = self.get_object(request, conversation_id)
+        serializer = ConversationRenameSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        conversation.title = serializer.validated_data['title']
+        conversation.save(update_fields=['title', 'updated_at'])
+        return Response(ConversationDetailSerializer(conversation).data)
+
+    def delete(self, request, conversation_id):
+        conversation = self.get_object(request, conversation_id)
+        conversation.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
