@@ -1,0 +1,16 @@
+{
+  "name": "PAXIS AI",
+  "short_name": "PAXIS AI",
+  "description": "Personalized AI Exploration and Intelligent Strategy: learning roadmaps, saved chats and progress tracking.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8fbff",
+  "theme_color": "#7c3aed",
+  "icons": [
+    { "src": "/paxis-icon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" },
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" },
+    { "src": "/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" }
+  ]
+}

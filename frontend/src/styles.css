@@ -1,0 +1,748 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  color: #1f2147;
+  background: radial-gradient(circle at top left, #f6f0ff, #f8fbff 38%, #f0f5ff);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 24px auto 0;
+  max-width: 1320px;
+  padding: 12px 22px;
+  background: #ffffff;
+  border-radius: 99px;
+  box-shadow: 0 10px 30px rgba(90, 62, 160, .05);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brandIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  color: white;
+  background: linear-gradient(135deg, #7c3aed, #c026d3);
+  font-size: 20px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.brand p,
+.panelHeader p {
+  margin: 2px 0 0;
+  color: #74779a;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #2e1065;
+  color: #fff;
+  font-weight: bold;
+}
+
+.dashboard {
+  max-width: 1320px;
+  margin: 24px auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(380px, 1.4fr);
+  gap: 24px;
+}
+
+.chatCard,
+.roadmapCard {
+  height: calc(100vh - 150px);
+  max-height: calc(100vh - 150px);
+  background: #ffffff;
+  border: 1px solid rgba(126, 87, 255, .1);
+  border-radius: 32px;
+  box-shadow: 0 24px 70px rgba(64, 45, 120, .08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  border-bottom: 1px solid #f3f0ff;
+}
+
+.panelHeader h2,
+.roadmapCard h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.onlineDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  margin-right: 4px;
+}
+
+.ghostBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  background: #f7f2ff;
+  color: #7c3aed;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ghostBtn:hover {
+  background: #ede9fe;
+}
+
+.messages {
+  flex: 1;
+  overflow: auto;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.messageRow {
+  display: flex;
+  gap: 16px;
+  max-width: 85%;
+}
+
+.messageRow.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.bubbleAvatar {
+  flex: 0 0 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #f3f0ff;
+  color: #7c3aed;
+  font-size: 20px;
+}
+
+.user .bubbleAvatar {
+  background: #2e1065;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.bubble {
+  padding: 16px 20px;
+  border-radius: 24px;
+  background: #f8f9fc;
+  box-shadow: 0 4px 12px rgba(62, 45, 116, .03);
+  font-size: 15px;
+  color: #334155;
+}
+
+.user .bubble {
+  background: #7c3aed;
+  color: #fff;
+  border-bottom-right-radius: 8px;
+}
+
+.assistant .bubble {
+  border-top-left-radius: 8px;
+}
+
+.bubble pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: inherit;
+  line-height: 1.6;
+}
+
+.typing {
+  color: #8b5cf6;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.typing::after {
+  content: '•••';
+  letter-spacing: 2px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.errorBox {
+  margin: 0 32px 16px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: #fff1f2;
+  color: #e11d48;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.composer {
+  display: flex;
+  gap: 16px;
+  padding: 24px 32px;
+  background: #fff;
+}
+
+.composer input {
+  flex: 1;
+  border: 1px solid #e2e8f0;
+  border-radius: 99px;
+  padding: 18px 24px;
+  font: inherit;
+  outline: none;
+  background: #f8fafc;
+  transition: border 0.2s, background 0.2s;
+}
+
+.composer input:focus {
+  border-color: #a78bfa;
+  background: #fff;
+  box-shadow: 0 0 0 4px #f3f0ff;
+}
+
+.composer button {
+  display: grid;
+  place-items: center;
+  flex: 0 0 56px;
+  height: 56px;
+  border: 0;
+  border-radius: 50%;
+  background: #a855f7;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.composer button:hover:not(:disabled) {
+  background: #9333ea;
+  transform: scale(1.05);
+}
+
+.composer button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+  background: #cbd5e1;
+}
+
+/* ROADMAP PANEL */
+.roadmapCard {
+  padding: 32px;
+  overflow: auto;
+}
+
+.roadmapCard.empty {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.emptyIcon {
+  width: 92px;
+  height: 92px;
+  display: grid;
+  place-items: center;
+  border-radius: 28px;
+  background: #f3f0ff;
+  color: #7c3aed;
+  font-size: 40px;
+}
+
+.empty p {
+  max-width: 340px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.hint {
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: #f8fafc;
+  color: #8b5cf6;
+  font-weight: 600;
+  font-size: 13px;
+  margin-top: 16px;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.roadmapHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.heroIcon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #a855f7, #6366f1);
+  color: #fff;
+  font-size: 24px;
+  box-shadow: 0 10px 20px rgba(168, 85, 247, .25);
+}
+
+.roadmapHeader p {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.roadmapGoalCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  margin-top: 32px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.goalCardLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.goalIcon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #6366f1;
+  color: #fff;
+  font-size: 20px;
+  box-shadow: 0 8px 16px rgba(99, 102, 241, .25);
+}
+
+.goalCardLeft p {
+  margin: 0 0 2px;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.goalCardLeft h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #0f172a;
+}
+
+.goalCardStats {
+  display: flex;
+  gap: 32px;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.statIcon {
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+.statItem p {
+  margin: 0 0 2px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.statItem strong {
+  color: #334155;
+  font-size: 14px;
+}
+
+.timeline {
+  position: relative;
+  margin: 32px 0 0;
+  padding-left: 12px;
+}
+
+.timeline:before {
+  content: "";
+  position: absolute;
+  left: 28px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: #e2e8f0;
+}
+
+.timelineItem {
+  display: flex;
+  gap: 24px;
+  position: relative;
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
+.stepBadge {
+  display: grid;
+  place-items: center;
+  flex: 0 0 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #c4b5fd;
+  color: #7c3aed;
+  font-weight: 800;
+  font-size: 14px;
+  box-shadow: 0 0 0 6px #fff;
+}
+
+.stepCard {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.stepCardIcon {
+  flex: 0 0 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+}
+
+.stepCardContent {
+  flex: 1;
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.stepHeader h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #0f172a;
+}
+
+.stepDurationBadge {
+  background: #f3f0ff;
+  color: #7c3aed;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 99px;
+}
+
+.stepCardContent p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.stepCardContent ul {
+  padding-left: 18px;
+  margin: 12px 0 0;
+  color: #475569;
+  font-size: 14px;
+}
+
+.stepCardContent li {
+  margin: 4px 0;
+}
+
+.miniSection,
+.nextAction {
+  padding: 20px;
+  border-radius: 20px;
+  background: #f8fafc;
+  margin-top: 24px;
+  border: 1px solid #e2e8f0;
+}
+
+.miniSection p {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: #334155;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.nextAction {
+  background: #ecfdf5;
+  border-color: #d1fae5;
+  color: #065f46;
+}
+
+@media (max-width: 960px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+  .chatCard, .roadmapCard { min-height: auto; }
+  .messages { height: 60vh; }
+  .goalCardStats { flex-direction: column; gap: 12px; align-items: flex-start; }
+}
+
+@media (max-width: 560px) {
+  .topbar { padding: 12px; border-radius: 20px; }
+  .composer { padding: 16px; }
+  .roadmapGoalCard { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .stepCard { flex-direction: column; }
+}
+
+/* Print Styles */
+@media print {
+  body { background: #fff !important; }
+  .topbar, .chatCard, .hide-on-print { display: none !important; }
+  .dashboard { display: block; margin: 0; }
+  .roadmapCard { 
+    border: none !important; 
+    box-shadow: none !important; 
+    padding: 0 !important;
+  }
+  .roadmapGoalCard { border: 2px solid #e2e8f0; break-inside: avoid; }
+  .timelineItem { break-inside: avoid; }
+  .stepCard { border: 2px solid #e2e8f0; }
+}
+
+.studyMaterial {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.resourceLinks {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.resourceLinks a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  background: #f8fafc;
+  transition: background 0.2s;
+}
+
+.resourceLinks a:hover {
+  background: #f1f5f9;
+}
+
+.resourceIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.websiteIcon { stroke: #2563eb; color: #2563eb; fill: none; }
+.youtubeIcon { fill: #ef4444; stroke: none; }
+
+/* Dark Mode Overrides */
+body.dark-mode {
+  background: radial-gradient(circle at top left, #1a1625, #0f0e17 38%, #14121c);
+  color: #e2e8f0;
+}
+
+body.dark-mode .topbar,
+body.dark-mode .chatCard,
+body.dark-mode .roadmapCard,
+body.dark-mode .roadmapGoalCard,
+body.dark-mode .stepCard,
+body.dark-mode .composer {
+  background: #1c192b;
+  border-color: #2d283e;
+}
+
+body.dark-mode .panelHeader h2,
+body.dark-mode .roadmapCard h2,
+body.dark-mode h1,
+body.dark-mode h3,
+body.dark-mode .goalCardLeft h3,
+body.dark-mode .stepHeader h3,
+body.dark-mode .statItem strong {
+  color: #f8fafc;
+}
+
+body.dark-mode .brand p,
+body.dark-mode .panelHeader p,
+body.dark-mode .empty p,
+body.dark-mode .roadmapHeader p,
+body.dark-mode .goalCardLeft p,
+body.dark-mode .statItem p,
+body.dark-mode .stepCardContent p {
+  color: #94a3b8;
+}
+
+body.dark-mode .bubble {
+  background: #2d283e;
+  color: #e2e8f0;
+}
+
+body.dark-mode .user .bubble {
+  background: #7c3aed;
+  color: #fff;
+}
+
+body.dark-mode .composer input {
+  background: #13111c;
+  color: #f8fafc;
+  border-color: #2d283e;
+}
+
+body.dark-mode .ghostBtn,
+body.dark-mode .bubbleAvatar {
+  background: #2d283e;
+}
+
+body.dark-mode .ghostBtn:hover {
+  background: #3f3956;
+}
+
+body.dark-mode .miniSection,
+body.dark-mode .hint,
+body.dark-mode .resourceLinks a {
+  background: #2d283e;
+  color: #e2e8f0;
+  border-color: #3f3956;
+}
+
+body.dark-mode .nextAction {
+  background: #064e3b;
+  color: #34d399;
+  border-color: #065f46;
+}
+
+body.dark-mode .timeline:before {
+  background: #2d283e;
+}
+
+body.dark-mode .stepBadge {
+  background: #1c192b;
+  box-shadow: 0 0 0 6px #1c192b;
+}
+
+body.dark-mode .studyMaterial {
+  border-top-color: #2d283e;
+}
+
+.messageContent {
+  line-height: 1.6;
+}
+
+.bubble p {
+  margin: 0 0 12px;
+}
+
+.bubble p:last-child {
+  margin-bottom: 0;
+}
+
+.bubble ul,
+.bubble ol {
+  margin: 8px 0;
+  padding-left: 24px;
+}
+
+.bubble li {
+  margin: 4px 0;
+}
+
+/* Inline code */
+.bubble code:not(pre code) {
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.08);
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+}
+
+/* Code blocks */
+.bubble pre {
+  margin: 12px 0 !important;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+.bubble pre code {
+  font-family: 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: 14px;
+}

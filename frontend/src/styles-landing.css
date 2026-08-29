@@ -1,0 +1,1023 @@
+/* ===========================================================================
+   PAXIS AI - brand mark, landing page, roadmap modal, footer.
+   Loaded after styles-app.css.
+   =========================================================================== */
+
+/* --- Brand mark ----------------------------------------------------------- */
+
+.brandMark {
+  display: block;
+  border-radius: 22%;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.brandMark.glow {
+  filter: drop-shadow(0 24px 60px rgba(124, 58, 237, .38));
+}
+
+.brand {
+  text-decoration: none;
+  color: inherit;
+}
+
+.brandLockup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brandLockupText strong {
+  display: block;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+}
+
+.brandLockupText span {
+  font-size: 12px;
+  color: #74779a;
+}
+
+.authFullName {
+  margin: 4px 0 14px !important;
+  font-size: 13px !important;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #9b6ae0 !important;
+}
+
+/* --- Footer --------------------------------------------------------------- */
+
+.siteFooter {
+  padding: 22px 24px 28px;
+  text-align: center;
+}
+
+.siteFooter p {
+  margin: 0;
+  font-size: 13px;
+  color: #8b8fb0;
+}
+
+.authFooter {
+  grid-column: 1 / -1;
+}
+
+/* --- Landing page --------------------------------------------------------- */
+
+.landing {
+  min-height: 100vh;
+}
+
+.landingNav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 28px;
+  background: rgba(255, 255, 255, .82);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(126, 87, 255, .12);
+}
+
+.landingNav .brandText h1 {
+  font-size: 17px;
+}
+
+.landingNav .brandText p {
+  margin: 1px 0 0;
+  font-size: 11px;
+  color: #74779a;
+  font-weight: 500;
+}
+
+.landingLinks {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.landingLinks a {
+  padding: 9px 14px;
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5b5e86;
+  text-decoration: none;
+}
+
+.landingLinks a:hover {
+  background: #f7f2ff;
+  color: #7c3aed;
+}
+
+.landingActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.landingActions .ghostBtn,
+.landingActions .primaryBtn {
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.landing main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Hero */
+
+.landingHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  align-items: center;
+  gap: 48px;
+  padding: 72px 0 56px;
+}
+
+.heroPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 15px;
+  border-radius: 99px;
+  background: #f3e8ff;
+  color: #6d28d9;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.landingHeroText h2 {
+  margin: 20px 0 0;
+  font-size: 46px;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -.02em;
+}
+
+.landingHeroText > p {
+  margin: 18px 0 0;
+  max-width: 540px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: #5b5e86;
+}
+
+.heroButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.heroButtons .primaryBtn {
+  width: auto;
+  margin-top: 0;
+  padding: 14px 26px;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.ghostBtn.large {
+  padding: 14px 24px;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.heroPoints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.heroPoints li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #5b5e86;
+}
+
+.heroPoints svg {
+  color: #10b981;
+}
+
+.landingHeroArt {
+  display: grid;
+  place-items: center;
+}
+
+/* PAXIS pillars strip */
+
+.landingStrip {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  padding: 26px;
+  background: #fff;
+  border: 1px solid rgba(126, 87, 255, .1);
+  border-radius: 26px;
+  box-shadow: 0 18px 50px rgba(64, 45, 120, .07);
+}
+
+.pillar {
+  padding: 0 14px;
+  border-left: 2px solid #f0ecfd;
+}
+
+.pillar:first-child {
+  border-left: 0;
+}
+
+.pillarKey {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #7c3aed, #c026d3);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.pillar strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.pillar p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #74779a;
+}
+
+/* Sections */
+
+.landingSection {
+  padding: 76px 0 0;
+}
+
+.sectionHead {
+  max-width: 640px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.sectionHead h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+}
+
+.sectionHead p {
+  margin: 12px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #74779a;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.featureCard {
+  padding: 26px 24px;
+  background: #fff;
+  border: 1px solid rgba(126, 87, 255, .1);
+  border-radius: 22px;
+  box-shadow: 0 14px 40px rgba(64, 45, 120, .06);
+  transition: transform .18s, box-shadow .18s;
+}
+
+.featureCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 54px rgba(64, 45, 120, .12);
+}
+
+.featureIcon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  background: #f3e8ff;
+  color: #7c3aed;
+}
+
+.featureCard h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.featureCard p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #74779a;
+}
+
+/* How it works */
+
+.stepFlow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stepFlow li {
+  position: relative;
+  padding: 26px 22px;
+  background: #fff;
+  border: 1px solid rgba(126, 87, 255, .1);
+  border-radius: 22px;
+  box-shadow: 0 14px 40px rgba(64, 45, 120, .06);
+}
+
+.stepFlowNumber {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #c026d3);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.stepFlow h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.stepFlow h3 svg {
+  color: #7c3aed;
+}
+
+.stepFlow p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #74779a;
+}
+
+/* Usage preview */
+
+.usageGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.usageChat,
+.usageRoadmap {
+  padding: 24px;
+  background: #fff;
+  border: 1px solid rgba(126, 87, 255, .1);
+  border-radius: 22px;
+  box-shadow: 0 14px 40px rgba(64, 45, 120, .06);
+}
+
+.usageBubble {
+  padding: 14px 18px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.usageBubble.user {
+  margin-left: auto;
+  max-width: 88%;
+  background: linear-gradient(135deg, #7c3aed, #c026d3);
+  color: #fff;
+  border-bottom-right-radius: 6px;
+}
+
+.usageBubble.assistant {
+  margin-top: 14px;
+  max-width: 94%;
+  background: #f6f3ff;
+  color: #3f4166;
+  border-bottom-left-radius: 6px;
+}
+
+.usageNote {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 18px 0 0;
+  font-size: 12px;
+  color: #9296bb;
+}
+
+.usageRoadmapHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #f3f0ff;
+  color: #7c3aed;
+}
+
+.usageRoadmapHead strong {
+  display: block;
+  font-size: 15px;
+  color: #1f2147;
+}
+
+.usageRoadmapHead span {
+  font-size: 12px;
+  color: #9296bb;
+}
+
+.usageRoadmap ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.usageRoadmap li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.usageStage {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #f3e8ff;
+  color: #6d28d9;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.usageRoadmap li strong {
+  display: block;
+  font-size: 14px;
+}
+
+.usageRoadmap li small {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  color: #9296bb;
+}
+
+.usageLinks {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 7px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #7c3aed;
+}
+
+.usageTrack {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 11px 14px;
+  border-radius: 14px;
+  background: #f0fdf4;
+  color: #047857;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* FAQ */
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 14px;
+}
+
+.faqItem {
+  padding: 20px 22px;
+  background: #fff;
+  border: 1px solid rgba(126, 87, 255, .1);
+  border-radius: 18px;
+}
+
+.faqItem summary {
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  list-style: none;
+}
+
+.faqItem summary::-webkit-details-marker {
+  display: none;
+}
+
+.faqItem summary::after {
+  content: '+';
+  float: right;
+  color: #9296bb;
+  font-weight: 700;
+}
+
+.faqItem[open] summary::after {
+  content: '\2013';
+}
+
+.faqItem p {
+  margin: 12px 0 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #74779a;
+}
+
+/* Closing CTA */
+
+.landingCta {
+  margin: 84px 0 20px;
+  padding: 56px 32px;
+  text-align: center;
+  background: linear-gradient(135deg, #f6f0ff, #fdf2ff);
+  border: 1px solid rgba(126, 87, 255, .14);
+  border-radius: 30px;
+}
+
+.landingCta .brandMark {
+  margin: 0 auto 20px;
+}
+
+.landingCta h2 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+}
+
+.landingCta p {
+  margin: 12px 0 0;
+  font-size: 16px;
+  color: #5b5e86;
+}
+
+.landingCta .heroButtons {
+  justify-content: center;
+}
+
+/* --- Full-width chat + roadmap modal -------------------------------------- */
+
+.chatLayout {
+  grid-template-columns: 260px minmax(0, 1fr);
+}
+
+.chatLayout.sidebarCollapsed {
+  grid-template-columns: 68px minmax(0, 1fr);
+}
+
+.chatMain {
+  position: relative;
+  min-width: 0;
+}
+
+.roadmapFab {
+  position: absolute;
+  right: 26px;
+  bottom: 96px;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 99px;
+  background: linear-gradient(135deg, #7c3aed, #c026d3);
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 14px 34px rgba(124, 58, 237, .38);
+  transition: transform .16s, box-shadow .16s;
+}
+
+.roadmapFab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 44px rgba(124, 58, 237, .46);
+}
+
+.roadmapFabCount {
+  display: grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, .24);
+  font-size: 12px;
+}
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background: rgba(24, 14, 40, .55);
+  backdrop-filter: blur(4px);
+  animation: pxFade .18s ease;
+}
+
+@keyframes pxFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalShell {
+  position: relative;
+  width: min(980px, 100%);
+  /* Grid items refuse to shrink below min-content by default, which made the
+     dialog wider than a phone screen. */
+  min-width: 0;
+  max-height: 90vh;
+  animation: pxRise .22s ease;
+}
+
+@keyframes pxRise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* The panel was sized for a fixed column; inside the dialog it fills the shell. */
+.modalShell .roadmapCard {
+  height: auto;
+  min-width: 0;
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 0;
+}
+
+/* Anything inside the roadmap that cannot reflow scrolls in place rather than
+   pushing the dialog wider than the viewport. */
+.modalShell .roadmapGoalCard,
+.modalShell .timeline,
+.modalShell .stepCard {
+  min-width: 0;
+}
+
+.modalShell .roadmapHeaderActions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.modalClose {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ece7fb;
+  border-radius: 50%;
+  background: #fff;
+  color: #5b5e86;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(64, 45, 120, .2);
+}
+
+.modalClose:hover {
+  background: #f7f2ff;
+  color: #7c3aed;
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .landingStrip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .pillar {
+    border-left: 0;
+    padding: 0;
+  }
+  .usageGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .landingNav {
+    flex-wrap: wrap;
+    padding: 10px 16px;
+  }
+  .landingNav .brandText p { display: none; }
+  .landingLinks {
+    display: none;
+    order: 3;
+    width: 100%;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 8px;
+    margin-left: 0;
+  }
+  .landingLinks.open { display: flex; }
+  .landingLinks a { width: 100%; }
+  .landing main { padding: 0 16px; }
+  .landingHero {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 40px 0 32px;
+    text-align: center;
+  }
+  .landingHeroText h2 { font-size: 34px; }
+  .landingHeroText > p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .heroButtons,
+  .heroPoints { justify-content: center; }
+  .landingHeroArt .brandMark {
+    width: 180px;
+    height: 180px;
+  }
+  .landingSection { padding: 52px 0 0; }
+  .sectionHead h2 { font-size: 26px; }
+  .landingCta {
+    padding: 40px 20px;
+    margin-top: 56px;
+  }
+  .landingCta h2 { font-size: 24px; }
+
+  .chatLayout,
+  .chatLayout.sidebarCollapsed { grid-template-columns: 1fr; }
+  .modalBackdrop { padding: 12px; }
+  .modalShell { max-height: 94vh; }
+  .modalShell .roadmapCard { max-height: 94vh; }
+  .modalClose { top: 8px; right: 8px; }
+  .modalShell .roadmapGoalCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .modalShell .roadmapHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .roadmapFab {
+    right: 16px;
+    bottom: 88px;
+    padding: 11px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 560px) {
+  .landingStrip {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+  .featureGrid,
+  .faqGrid { grid-template-columns: 1fr; }
+  .heroButtons .primaryBtn,
+  .ghostBtn.large {
+    width: 100%;
+    justify-content: center;
+  }
+  .landingActions .ghostBtn:not(.iconBtn) { display: none; }
+  .roadmapFab span:not(.roadmapFabCount) { display: none; }
+}
+
+/* --- Dark mode ------------------------------------------------------------ */
+
+body.dark-mode .landingNav {
+  background: rgba(28, 25, 43, .84);
+  border-bottom-color: #2d283e;
+}
+
+body.dark-mode .landingStrip,
+body.dark-mode .featureCard,
+body.dark-mode .stepFlow li,
+body.dark-mode .usageChat,
+body.dark-mode .usageRoadmap,
+body.dark-mode .faqItem,
+body.dark-mode .modalClose {
+  background: #1c192b;
+  border-color: #2d283e;
+}
+
+body.dark-mode .landingLinks a,
+body.dark-mode .heroPoints li,
+body.dark-mode .modalClose {
+  color: #cbd5e1;
+}
+
+body.dark-mode .landingLinks a:hover,
+body.dark-mode .modalClose:hover {
+  background: #2d283e;
+  color: #a78bfa;
+}
+
+body.dark-mode .sectionHead h2,
+body.dark-mode .landingHeroText h2,
+body.dark-mode .landingCta h2,
+body.dark-mode .featureCard h3,
+body.dark-mode .stepFlow h3,
+body.dark-mode .faqItem summary,
+body.dark-mode .usageRoadmapHead strong,
+body.dark-mode .usageRoadmap li strong,
+body.dark-mode .brandLockupText strong {
+  color: #f8fafc;
+}
+
+body.dark-mode .sectionHead p,
+body.dark-mode .landingHeroText > p,
+body.dark-mode .landingCta p,
+body.dark-mode .featureCard p,
+body.dark-mode .stepFlow p,
+body.dark-mode .faqItem p,
+body.dark-mode .pillar p,
+body.dark-mode .siteFooter p,
+body.dark-mode .landingNav .brandText p,
+body.dark-mode .brandLockupText span,
+body.dark-mode .usageNote,
+body.dark-mode .usageRoadmap li small,
+body.dark-mode .usageRoadmapHead span {
+  color: #94a3b8;
+}
+
+body.dark-mode .heroPill,
+body.dark-mode .featureIcon,
+body.dark-mode .usageStage {
+  background: #2d283e;
+  color: #ddd6fe;
+}
+
+body.dark-mode .usageBubble.assistant {
+  background: #2d283e;
+  color: #e2e8f0;
+}
+
+body.dark-mode .usageTrack {
+  background: #10251c;
+  color: #6ee7b7;
+}
+
+body.dark-mode .usageRoadmapHead {
+  border-bottom-color: #2d283e;
+}
+
+body.dark-mode .pillar {
+  border-left-color: #2d283e;
+}
+
+body.dark-mode .landingCta {
+  background: linear-gradient(135deg, #241a3a, #2c1633);
+  border-color: #3f3956;
+}
+
+body.dark-mode .authFullName {
+  color: #c4b5fd !important;
+}
+
+body.dark-mode .modalBackdrop {
+  background: rgba(8, 5, 14, .68);
+}
+
+/* --- Install button ------------------------------------------------------- */
+
+.installWrap {
+  position: relative;
+}
+
+.installBtn {
+  white-space: nowrap;
+}
+
+.installHelp {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 60;
+  width: 268px;
+  padding: 16px 18px;
+  background: #fff;
+  border: 1px solid #ece7fb;
+  border-radius: 16px;
+  box-shadow: 0 24px 50px rgba(64, 45, 120, .18);
+}
+
+.installHelp strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.installHelp ol {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 7px;
+}
+
+.installHelp li {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #5b5e86;
+}
+
+.installHelp li svg {
+  vertical-align: -2px;
+  color: #7c3aed;
+}
+
+.installHelp em {
+  font-style: normal;
+  font-weight: 700;
+  color: #3f4166;
+}
+
+.installHelpClose {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #9296bb;
+  cursor: pointer;
+}
+
+.installHelpClose:hover {
+  background: #f7f2ff;
+  color: #7c3aed;
+}
+
+@media (max-width: 900px) {
+  /* Keep it as an icon in the crowded mobile bar. */
+  .installBtn span { display: none; }
+  .installBtn { padding: 9px 11px; }
+}
+
+body.dark-mode .installHelp {
+  background: #1c192b;
+  border-color: #2d283e;
+}
+
+body.dark-mode .installHelp strong,
+body.dark-mode .installHelp em {
+  color: #f8fafc;
+}
+
+body.dark-mode .installHelp li {
+  color: #94a3b8;
+}
+
+body.dark-mode .installHelpClose:hover {
+  background: #2d283e;
+  color: #a78bfa;
+}

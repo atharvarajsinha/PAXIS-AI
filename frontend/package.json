@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "html2pdf.js": "^0.14.0",
+    "lucide-react": "^1.37.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.18.3",
+    "react-syntax-highlighter": "^16.1.1",
+    "vite": "latest"
+  }
+}
