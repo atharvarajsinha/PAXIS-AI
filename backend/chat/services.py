@@ -354,17 +354,35 @@ def generate_learning_response(message, conversation_history=None, profile_conte
 
     yield {'status': 'Analyzing...'}
     try:
-        client = genai.Client(api_key=settings.GEMINI_API_KEY)
+        client = genai.Client(
+            api_key=settings.GEMINI_API_KEY,
+            http_options=types.HttpOptions(
+                timeout=120000
+            ),
+        )
         if settings.DEBUG:
             logger.info('[Gemini] Calling model: %s', settings.GEMINI_MODEL)
-        result = client.models.generate_content(
+
+        chunks = []
+
+        for chunk in client.models.generate_content_stream(
             model=settings.GEMINI_MODEL,
             contents=_provider_history(message, conversation_history),
             config=types.GenerateContentConfig(
                 system_instruction=system_prompt,
                 response_mime_type='application/json',
             ),
+        ):
+            if chunk.text:
+                chunks.append(chunk.text)
+
+        response_text = ''.join(chunks)
+
+        response, roadmap = _parse_provider_response(
+            response_text,
+            'Gemini'
         )
+
         if settings.DEBUG:
             logger.info('[Gemini] Response received successfully')
     except Exception as exc:
@@ -379,8 +397,6 @@ def generate_learning_response(message, conversation_history=None, profile_conte
             except Exception as e:
                 raise GroqResponseError(str(e))
         raise
-
-    response, roadmap = _parse_provider_response(getattr(result, 'text', ''), 'Gemini')
     
     # Send the conversational response first so the UI can update
     yield {'response': response}
