@@ -8,7 +8,7 @@ Instead of being confused about **what to learn, where to learn it, and what to 
 
 ---
 
-## 🌟 How PAXIS AI Works
+##  How PAXIS AI Works
 
 ### 1. Create Your Profile
 
@@ -153,7 +153,7 @@ When they return, they can continue from where they stopped.
 
 ---
 
-## 💬 Example
+##  Example
 
 Imagine a student wants to become a Python Developer.
 
@@ -181,7 +181,7 @@ PAXIS then:
 
 ---
 
-## 🎯 What Problem Does PAXIS Solve?
+##  What Problem Does PAXIS Solve?
 
 Learning something new can often be confusing.
 
@@ -199,7 +199,7 @@ People may ask:
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
 * Personalized learning journeys
 * Simple conversation-based interaction
@@ -219,7 +219,7 @@ People may ask:
 
 ---
 
-## 🔄 The Complete PAXIS Journey
+##  The Complete PAXIS Journey
 
 ```text
           YOUR GOAL
@@ -249,7 +249,7 @@ People may ask:
 
 ---
 
-## 🚀 In Simple Words
+##  In Simple Words
 
 **You tell PAXIS where you want to go.**
 
