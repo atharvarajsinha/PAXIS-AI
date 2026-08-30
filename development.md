@@ -142,7 +142,7 @@ For Windows:
 copy .env.example .env
 ```
 
-Configure the root `.env`:
+Configure the root `backend/.env`:
 
 ```dotenv
 GEMINI_API_KEY=
