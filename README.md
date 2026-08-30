@@ -8,6 +8,16 @@ Instead of being confused about **what to learn, where to learn it, and what to 
 
 ---
 
+## Documentation
+
+| Document | Description |
+|---|---|
+| [Development Guide](development.md) | Development setup and architecture |
+| [Documentation](Documentation.pdf) | Complete project documentation |
+| [DFD](DFD.pdf) | Data Flow Diagram |
+
+---
+
 ##  How PAXIS AI Works
 
 ### 1. Create Your Profile
